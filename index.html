@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alvin Ferdinand — Backend &amp; Data Engineer</title>
+<meta name="description" content="Python &amp; Web Developer. I build backend systems, data pipelines and applied-AI tools that real businesses run on every day.">
+<meta property="og:title" content="Alvin Ferdinand — Backend &amp; Data Engineer">
+<meta property="og:description" content="ERPs, retail POS, accounting integrations and computer-vision tooling in production use.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme">
+  <span class="theme-toggle__icon" aria-hidden="true"></span>
+</button>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="hero__eyebrow">Semarang, Indonesia · open to work</p>
+    <h1 class="hero__name">Alvin Ferdinand</h1>
+    <p class="hero__tagline">
+      I build backend systems, data pipelines and applied-AI tools that real
+      businesses run on <em>every day</em> — ERPs, retail point-of-sale,
+      accounting integrations and computer-vision tooling in production use.
+    </p>
+
+    <ul class="hero__facts">
+      <li><strong>963/963</strong><span>documents matched by a costing engine, audited against the accounting journal</span></li>
+      <li><strong>86.5s → 6.0s</strong><span>dashboard that the gateway kept killing, after an aggregation rewrite</span></li>
+      <li><strong>0</strong><span>wrong readings from an OCR pipeline tuned to abstain instead of guess</span></li>
+    </ul>
+
+    <nav class="hero__links">
+      <a class="btn btn--primary" href="mailto:alvinferdinand2004@gmail.com">Email me</a>
+      <a class="btn" href="https://github.com/AlvinFerdinand" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://linkedin.com/in/alvin-ferdinand-647102335" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <h2 class="section__title">Production work</h2>
+    <p class="section__lede">
+      Systems in daily use by real operations teams. The code belongs to the
+      companies that paid for it, so it is described here rather than shown —
+      the <a href="#demos">open-source demos below</a> rebuild the interesting
+      parts from scratch on invented data.
+    </p>
+
+    <article class="work">
+      <header class="work__head">
+        <h3>Accounting data pipelines</h3>
+        <p class="work__org">GSI Group</p>
+      </header>
+      <ul class="work__points">
+        <li>Two-way integration between Accurate Online's accounting API and Google BigQuery: token plus per-request signature auth, scheduled sync, idempotent loads.</li>
+        <li><strong>Paginated by document id, not by date.</strong> A date filter silently skipped records that had been back-dated after creation; sweeping by id closed the gap, and completeness is now verified against the source API's own row count rather than assumed.</li>
+        <li>FIFO cost-of-goods engine reconstructing per-item cost from inventory layers, validated against the accounting journal as referee — <strong>963 of 963 documents matched</strong>, where the spreadsheet it replaced matched 49.</li>
+        <li>Read-only XML-RPC bridge into Odoo for downstream reconciliation.</li>
+      </ul>
+    </article>
+
+    <article class="work">
+      <header class="work__head">
+        <h3>Multi-module ERP</h3>
+        <p class="work__org">Zuliya Group</p>
+      </header>
+      <ul class="work__points">
+        <li>Dozens of modules in daily production across several business lines: approval workflows, attendance with photo and GPS capture, asset register, cash handling, executive dashboards.</li>
+        <li><strong>Permissions scoped per module <em>and</em> per region</strong>, not globally — so one workflow definition serves branches with different rules instead of forking the codebase per branch.</li>
+        <li>Rewrote an executive dashboard's aggregation in SQL after the gateway kept killing it at <strong>86.5 seconds</strong>. It runs in <strong>6.0 seconds</strong>.</li>
+        <li>Photo-to-data pipeline reading handwritten field forms from phone photos: perspective correction, grid segmentation, per-cell recognition with a voting ensemble — tuned for <strong>zero wrong readings</strong> rather than maximum coverage, because a silently wrong number costs far more than a blank one.</li>
+      </ul>
+    </article>
+
+    <article class="work">
+      <header class="work__head">
+        <h3>Retail point-of-sale &amp; stock</h3>
+        <p class="work__org">Optik Rizki Eye Plus</p>
+      </header>
+      <ul class="work__points">
+        <li>POS and inventory across dozens of branches: sales, inter-branch stock transfers with scan-based receipt confirmation, and an append-only stock movement trail.</li>
+        <li><strong>Moved price resolution to the server</strong> after finding it trusted a price posted by the browser — when the client-side event didn't fire, invoices saved at zero with no warning. An invalid master price now blocks the save outright.</li>
+        <li>Branch-scoped catalogue sync, delivery notes, and payment-consistency guards.</li>
+      </ul>
+    </article>
+
+    <article class="work">
+      <header class="work__head">
+        <h3>Go services &amp; AI tooling</h3>
+        <p class="work__org">Various</p>
+      </header>
+      <ul class="work__points">
+        <li>Two Go backends in production: an internal HR and candidate-assessment platform (React + TypeScript + Vite frontend, PostgreSQL with enforced row-level security) and a mobile inventory system behind nginx and systemd.</li>
+        <li>Ported a legacy scoring engine and <strong>proved the port correct before trusting it</strong>: an independent re-implementation diffed against the new service across 300 real records — zero differences.</li>
+        <li>Natural-language query tool over BigQuery: a deterministic engine answers known question shapes first, a tiered set of language models handles the rest, and causal or hypothetical questions are flagged so a model's reasoning is never presented as measured fact.</li>
+        <li>React Native inventory app with device-camera capture, sharing one backend with its web counterpart through database views instead of duplicated query logic.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="section section--alt" id="demos">
+  <div class="wrap">
+    <h2 class="section__title">Open-source demos</h2>
+    <p class="section__lede">
+      Clean-room rebuilds of the patterns above — written from scratch on
+      invented data, so the engineering decisions can be read, run and tested
+      in the open. Every one is CI-tested on each push.
+    </p>
+
+    <div class="cards">
+      <a class="card" href="https://github.com/AlvinFerdinand/branch-stock-transfer-demo" target="_blank" rel="noopener">
+        <h3>branch-stock-transfer-demo <span class="card__tests">21 tests</span></h3>
+        <p>Inter-branch transfer handshake — stock leaves on send and arrives on receipt, never both at once. Append-only ledger, canonical item keys.</p>
+        <p class="card__tags"><code>python</code> <code>point-of-sale</code> <code>audit-log</code></p>
+      </a>
+
+      <a class="card" href="https://github.com/AlvinFerdinand/scoped-permission-system-demo" target="_blank" rel="noopener">
+        <h3>scoped-permission-system-demo <span class="card__tests">18 tests</span></h3>
+        <p>Permissions scoped by module <em>and</em> region, plus one workflow definition serving regions with different approval stages.</p>
+        <p class="card__tags"><code>python</code> <code>rbac</code> <code>erp</code></p>
+      </a>
+
+      <a class="card" href="https://github.com/AlvinFerdinand/ocr-form-reader-demo" target="_blank" rel="noopener">
+        <h3>ocr-form-reader-demo <span class="card__tests">14 tests</span></h3>
+        <p>Photographed form to structured digits, tuned for zero wrong readings. Refuses to guess when the page is unreadable. NumPy only.</p>
+        <p class="card__tags"><code>python</code> <code>computer-vision</code> <code>numpy</code></p>
+      </a>
+
+      <a class="card" href="https://github.com/AlvinFerdinand/fifo-cogs-engine-demo" target="_blank" rel="noopener">
+        <h3>fifo-cogs-engine-demo <span class="card__tests">8 tests</span></h3>
+        <p>FIFO cost-of-goods engine with explicit handling for the case most implementations get wrong: a sale that outruns the stock on hand.</p>
+        <p class="card__tags"><code>python</code> <code>accounting</code> <code>fifo</code></p>
+      </a>
+
+      <a class="card" href="https://github.com/AlvinFerdinand/rest-sync-pipeline-demo" target="_blank" rel="noopener">
+        <h3>rest-sync-pipeline-demo <span class="card__tests">6 tests</span></h3>
+        <p>Reliable incremental REST sync: paginate by id not date, idempotent upsert, completeness verified against the source's own total.</p>
+        <p class="card__tags"><code>python</code> <code>data-pipeline</code> <code>etl</code></p>
+      </a>
+
+      <a class="card" href="https://github.com/AlvinFerdinand/jwt-auth-filter-demo" target="_blank" rel="noopener">
+        <h3>jwt-auth-filter-demo <span class="card__tests">3 tests</span></h3>
+        <p>JWT auth filter for Spring Boot 3 / Spring Security 6, from scratch. A learning build — not a rebuild of shipped work.</p>
+        <p class="card__tags"><code>java</code> <code>spring-security</code> <code>jwt</code></p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <h2 class="section__title">Tools</h2>
+    <div class="skills">
+      <div class="skills__group">
+        <h3>Daily</h3>
+        <p><code>Python</code> <code>PHP / Laravel</code> <code>Go</code> <code>JavaScript</code> <code>SQL</code></p>
+      </div>
+      <div class="skills__group">
+        <h3>Data &amp; cloud</h3>
+        <p><code>BigQuery</code> <code>MySQL</code> <code>PostgreSQL</code> <code>Google Cloud</code> <code>REST</code> <code>XML-RPC</code></p>
+      </div>
+      <div class="skills__group">
+        <h3>Frontend &amp; mobile</h3>
+        <p><code>React</code> <code>TypeScript</code> <code>React Native</code> <code>Vite</code></p>
+      </div>
+      <div class="skills__group">
+        <h3>ML &amp; vision</h3>
+        <p><code>TensorFlow</code> <code>NumPy</code> <code>OpenCV</code> <code>LLM integration</code></p>
+      </div>
+      <div class="skills__group">
+        <h3>Learning now</h3>
+        <p><code>Angular 19</code> <code>Ionic</code> <code>Spring Boot 3</code> <code>Java 21</code></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" id="background">
+  <div class="wrap">
+    <h2 class="section__title">Background</h2>
+    <ul class="timeline">
+      <li>
+        <strong>Computer Science — Soegijapranata Catholic University</strong>
+        <span>GPA 3.70</span>
+      </li>
+      <li>
+        <strong>Bangkit Academy — Machine Learning path</strong>
+        <span>TensorFlow, model deployment on Google Cloud</span>
+      </li>
+      <li>
+        <strong>Coding instructor — Timedoor Academy</strong>
+        <span>Taught Python, web, Android (Kotlin/Java) and machine learning for a year</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap wrap--narrow">
+    <h2 class="section__title">Get in touch</h2>
+    <p class="section__lede">
+      Open to backend, data-engineering and full-stack roles — remote or on-site.
+    </p>
+
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="form">
+      <p class="form__hp"><label>Leave this empty: <input name="bot-field"></label></p>
+      <div class="form__row">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required autocomplete="name">
+      </div>
+      <div class="form__row">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email">
+      </div>
+      <div class="form__row">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary">Send</button>
+      <p class="form__note">
+        Prefer email? <a href="mailto:alvinferdinand2004@gmail.com">alvinferdinand2004@gmail.com</a>
+        · <a href="tel:+6285702542793">+62 857-0254-2793</a>
+      </p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>Alvin Ferdinand · Semarang, Indonesia</p>
+    <p class="footer__links">
+      <a href="https://github.com/AlvinFerdinand" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/alvin-ferdinand-647102335" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:alvinferdinand2004@gmail.com">Email</a>
+    </p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
