@@ -38,6 +38,7 @@
 
     <nav class="hero__links">
       <a class="btn btn--primary" href="mailto:alvinferdinand2004@gmail.com">Email me</a>
+      <a class="btn" href="cv/CV_Alvin_Ferdinand.pdf" target="_blank" rel="noopener">Download CV</a>
       <a class="btn" href="https://github.com/AlvinFerdinand" target="_blank" rel="noopener">GitHub</a>
       <a class="btn" href="https://linkedin.com/in/alvin-ferdinand-647102335" target="_blank" rel="noopener">LinkedIn</a>
     </nav>
@@ -55,6 +56,19 @@
       the <a href="#demos">open-source demos below</a> rebuild the interesting
       parts from scratch on invented data.
     </p>
+
+    <article class="work">
+      <header class="work__head">
+        <h3>Odoo&nbsp;&rarr;&nbsp;Accurate Online integration</h3>
+        <p class="work__org">GSI Group · IT Staff</p>
+      </header>
+      <ul class="work__points">
+        <li>Python middleware that reads Odoo&nbsp;19 over XML-RPC (read-only) and posts the full purchase chain (order, goods receipt, vendor bill, down payment) and sales chain (delivery, invoice, down payment) into Accurate the way an admin would enter them by hand.</li>
+        <li><strong>Reconciled daily against the source:</strong> 79 of 79 purchase orders correct; payables, receivables and VAT on every synced invoice equal to Odoo; every journal balanced; revenue per account within 1 rupiah.</li>
+        <li>Covers the messy cases: edits after posting, cancellations (closed, never deleted), document numbers reused across two company generations, VAT-inclusive prices with line discounts, next-day posting, retry with back-off on 429/5xx.</li>
+        <li>Mirrored Odoo's 64-account chart of accounts and drove item GL accounts from product categories. A full-scan audit of <strong>4,482 items and 2,594 item-warehouse pairs</strong> then showed exactly why cost of goods cannot reconcile without master-data cleanup — evidence presented to management with a risk register.</li>
+      </ul>
+    </article>
 
     <article class="work">
       <header class="work__head">
@@ -78,6 +92,9 @@
         <li>Dozens of modules in daily production across several business lines: approval workflows, attendance with photo and GPS capture, asset register, cash handling, executive dashboards.</li>
         <li><strong>Permissions scoped per module <em>and</em> per region</strong>, not globally — so one workflow definition serves branches with different rules instead of forking the codebase per branch.</li>
         <li>Rewrote an executive dashboard's aggregation in SQL after the gateway kept killing it at <strong>86.5 seconds</strong>. It runs in <strong>6.0 seconds</strong>.</li>
+        <li><strong>MCP server that lets Claude read the ERP directly</strong> — document search, which approval desk is backed up, server health (disk, backup age, failed jobs) and gas-meter reading checks — plus ZIA, an in-ERP assistant whose rules the owner edits without a deploy.</li>
+        <li><strong>Security review, then fixes:</strong> a second login page that skipped the account lockout and leaked staff names; attendance photos and locations every employee could see; leave and resignation letters readable by 29 accounts, now only HR. Server side: CSP and security headers in nginx, verified Telegram webhooks, working DKIM.</li>
+        <li>Integrations with Telegram (tasks, photo reports, password-reset codes via one-time account linking), a cloud fingerprint-attendance API and map lookups for attendance addresses.</li>
         <li>Photo-to-data pipeline reading handwritten field forms from phone photos: perspective correction, grid segmentation, per-cell recognition with a voting ensemble — tuned for <strong>zero wrong readings</strong> rather than maximum coverage, because a silently wrong number costs far more than a blank one.</li>
       </ul>
     </article>
@@ -88,9 +105,10 @@
         <p class="work__org">Optik Rizki Eye Plus</p>
       </header>
       <ul class="work__points">
-        <li>POS and inventory across dozens of branches: sales, inter-branch stock transfers with scan-based receipt confirmation, and an append-only stock movement trail.</li>
+        <li><strong>78 branches, 83 staff accounts, 56,637 sales since January 2026.</strong> POS and inventory: sales with down payments and settlement, lens lookup by prescription, barcode stock intake, inter-branch stock transfers with scan-based receipt confirmation, and an append-only stock movement trail.</li>
         <li><strong>Moved price resolution to the server</strong> after finding it trusted a price posted by the browser — when the client-side event didn't fire, invoices saved at zero with no warning. An invalid master price now blocks the save outright.</li>
         <li>Branch-scoped catalogue sync, delivery notes, and payment-consistency guards.</li>
+        <li>Also the chain's web presence and small tools: company-profile sites for six branches, an 11-brand lens price catalogue, a frame ordering form, a package tracker that reads supplier sheets through a caching PHP proxy, and a phone-camera box-contents tool.</li>
       </ul>
     </article>
 
@@ -100,10 +118,10 @@
         <p class="work__org">Various</p>
       </header>
       <ul class="work__points">
-        <li>Two Go backends in production: an internal HR and candidate-assessment platform (React + TypeScript + Vite frontend, PostgreSQL with enforced row-level security) and a mobile inventory system behind nginx and systemd.</li>
+        <li>Three Go backends: a company OKR system (Gin, GORM, React, Docker) with objectives per division and team, KPIs and an editable org chart; an HR recruitment platform with a public job portal (React + TypeScript + Vite, GORM on MySQL; applicants pulled from JobStreet and Glints by browser-automation workers) and a mobile inventory system on PostgreSQL with enforced row-level security, behind nginx and systemd.</li>
         <li>Ported a legacy scoring engine and <strong>proved the port correct before trusting it</strong>: an independent re-implementation diffed against the new service across 300 real records — zero differences.</li>
         <li>Natural-language query tool over BigQuery: a deterministic engine answers known question shapes first, a tiered set of language models handles the rest, and causal or hypothetical questions are flagged so a model's reasoning is never presented as measured fact.</li>
-        <li>React Native inventory app with device-camera capture, sharing one backend with its web counterpart through database views instead of duplicated query logic.</li>
+        <li>Android apps: a React Native inventory app shipped as APK releases for 32- and 64-bit phones, and a native Kotlin / Jetpack Compose banking app. The inventory app uses device-camera capture, sharing one backend with its web counterpart through database views instead of duplicated query logic.</li>
       </ul>
     </article>
   </div>
@@ -168,11 +186,11 @@
       </div>
       <div class="skills__group">
         <h3>Data &amp; cloud</h3>
-        <p><code>BigQuery</code> <code>MySQL</code> <code>PostgreSQL</code> <code>Google Cloud</code> <code>REST</code> <code>XML-RPC</code></p>
+        <p><code>BigQuery</code> <code>MySQL</code> <code>PostgreSQL</code> <code>Google Cloud</code> <code>REST</code> <code>XML-RPC</code> <code>Odoo</code> <code>Accurate Online</code> <code>MCP</code></p>
       </div>
       <div class="skills__group">
         <h3>Frontend &amp; mobile</h3>
-        <p><code>React</code> <code>TypeScript</code> <code>React Native</code> <code>Vite</code></p>
+        <p><code>React</code> <code>TypeScript</code> <code>React Native</code> <code>Kotlin</code> <code>Jetpack Compose</code> <code>Vite</code></p>
       </div>
       <div class="skills__group">
         <h3>ML &amp; vision</h3>
@@ -191,12 +209,24 @@
     <h2 class="section__title">Background</h2>
     <ul class="timeline">
       <li>
+        <strong>IT Staff — PT Gosyen Solusi Indonesia (GSI Group)</strong>
+        <span>Jul – Nov 2026 · joined as IT intern · Odoo–Accurate integration, HR system, mobile inventory, OKR system</span>
+      </li>
+      <li>
+        <strong>Freelance full-stack developer — Zuliya Group</strong>
+        <span>Since Aug 2026 · group ERP, MCP server for Claude, security hardening</span>
+      </li>
+      <li>
+        <strong>Freelance full-stack developer — Optik Rizki Eye Plus</strong>
+        <span>Since Oct 2025 · POS and stock system for 78 branches, branch websites and internal tools</span>
+      </li>
+      <li>
         <strong>Computer Science — Soegijapranata Catholic University</strong>
         <span>GPA 3.70</span>
       </li>
       <li>
-        <strong>Bangkit Academy — Machine Learning path</strong>
-        <span>TensorFlow, model deployment on Google Cloud</span>
+        <strong>Bangkit Academy 2024 — Machine Learning path, full graduate</strong>
+        <span>Sep – Dec 2024 · one of 4,636 selected from 45,000+ applicants · capstone EasyTour scored 88.9 (A) · 16 certificates incl. TensorFlow Developer Professional Certificate</span>
       </li>
       <li>
         <strong>Coding instructor — Timedoor Academy</strong>

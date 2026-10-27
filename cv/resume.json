@@ -1,0 +1,540 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Alvin Ferdinand",
+    "label": "Backend & Data Integration Engineer",
+    "email": "alvinferdinand2004@gmail.com",
+    "phone": "+62 857-0254-2793",
+    "url": "https://alvinferdinand.github.io",
+    "summary": "Backend developer from Semarang who builds and looks after systems that teams use every day: an ERP, a 78-branch retail POS, an HR and recruitment system, and the integration between Odoo, Accurate Online and BigQuery. Most of my work sits where business data has to be right, so I check results against the source instead of trusting them. I also handle the security and server side of what I build, and I have connected the ERP to Claude through an MCP server.",
+    "location": {
+      "city": "Semarang",
+      "region": "Central Java",
+      "countryCode": "ID"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "alvin-ferdinand-647102335",
+        "url": "https://linkedin.com/in/alvin-ferdinand-647102335"
+      },
+      {
+        "network": "GitHub",
+        "username": "AlvinFerdinand",
+        "url": "https://github.com/AlvinFerdinand"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "PT Gosyen Solusi Indonesia (GSI Group)",
+      "position": "IT Staff",
+      "location": "Semarang, Indonesia",
+      "startDate": "2026-07",
+      "endDate": "2026-11",
+      "highlights": [
+        "Built the sync that moves daily transactions from Odoo 19 into Accurate Online: purchase orders, goods receipts, vendor bills, deliveries, sales invoices and down payments. It only reads from Odoo and enters each document in Accurate the way an admin would by hand.",
+        "Wrote checkers that compare every synced document with Odoo each day. All 79 purchase orders match, and payables, receivables and VAT equal Odoo on every invoice, with every journal balanced.",
+        "Covered the messy cases: edits made after posting, cancelled orders, document numbers reused by an older company, prices that include VAT with line discounts, and Odoo going down mid-run. Documents are posted the next morning so same-day edits land once.",
+        "Set up Accurate's chart of accounts to match Odoo's 64 accounts, so revenue lands on the same accounts in both systems.",
+        "When cost of goods would not match, I scanned all 4,482 items and 2,594 item-warehouse stock positions and showed management the real cause: duplicate items and stock split across codes. I handed over the evidence in a workbook with a risk list.",
+        "Built the Accurate-to-BigQuery data pipeline and a FIFO cost engine that matched 963 of 963 documents; the old spreadsheet matched 49.",
+        "Built the HR recruitment system and the public job portal, from applicant intake to onboarding (see Projects).",
+        "Built the inventory Android app (React Native with a Go API): QR asset scanning, loans, repair reports and fuel claims with approvals. Shipped it as APK releases that install on both 32-bit and 64-bit phones.",
+        "Built the company OKR system used to set and track objectives, key results and KPIs per division (see Projects).",
+        "Wrote automated tests for the Go services (113 test files) and documented each system for handover.",
+        "Built Tanya Data, an AI assistant that answers questions about sales, stock and receivables from BigQuery (see Projects)."
+      ],
+      "summary": "Full-time. Started as an IT intern (Jul - Sep 2026). Responsible for the Odoo-Accurate integration, the HR and recruitment system, the inventory app and the company OKR system, working directly with finance, warehouse and HR. Tech stack: Python, Go, TypeScript, JavaScript, SQL | Odoo XML-RPC, Accurate Online API, Google BigQuery, Flask, Gin, GORM, React, React Native (Expo), MySQL, PostgreSQL (Supabase), SQLite, Gmail API, Claude and Gemini APIs | Docker, nginx, systemd, Git"
+    },
+    {
+      "name": "Zuliya Group",
+      "position": "Freelance Full-Stack Developer",
+      "location": "Indonesia",
+      "startDate": "2026-08",
+      "highlights": [
+        "Built and run the group ERP (Laravel 13, PHP 8.3, MySQL): cash requests and approvals, journals, attendance with photo and GPS, leave, assets and field operations. Access is set per module and per region, so each branch can follow its own approval steps.",
+        "Built an MCP server that lets Claude read the ERP directly: search documents, see which approval desk is backed up, check server health (disk, backup age, failed jobs) and validate gas meter readings. Also built ZIA, an assistant inside the ERP whose rules the owner can update without code changes.",
+        "Connected the ERP to outside services: a Telegram bot for tasks, photo reports and password reset codes (each user links their own account with a one-time code), a cloud fingerprint attendance API, and map lookups for attendance addresses.",
+        "Reviewed the ERP's security and fixed what I found: a second login page that skipped the account lockout and leaked staff names; attendance photos and locations that every employee could see; and leave and resignation letters readable by 29 accounts, now only HR.",
+        "Hardened the server: security headers and Content-Security-Policy in nginx, verified Telegram webhooks, a protected owner account, and working DKIM so ERP emails stop landing in spam.",
+        "Made the slow pages fast: the executive dashboard went from 86.5 s to 6.0 s, and the home page from 200 queries to 49.",
+        "Built an OCR pipeline that reads handwritten field forms from phone photos and leaves a field blank rather than guess wrong."
+      ],
+      "summary": "Freelance. Sole developer of the group ERP, from building features to running the production server. Tech stack: PHP 8.3, Laravel 13, JavaScript, SQL, Python | MySQL, Blade, Telegram Bot API, Fingerspot API, Claude API, MCP, Tesseract, OpenCV | Linux (Ubuntu) VPS, nginx, systemd, Git"
+    },
+    {
+      "name": "Optik Rizki Eye Plus",
+      "position": "Freelance Full-Stack Developer",
+      "location": "Indonesia",
+      "startDate": "2025-10",
+      "highlights": [
+        "Built and run the POS and stock system used every day by 78 branches and 83 staff accounts: 56,637 sales and 59,787 payment records since January 2026, with 15,365 frames and 5,957 lens SKUs in stock.",
+        "Sales with down payments and later settlement, a list of unpaid notes and printed receipts. Staff pick lenses from the master list by prescription (SPH, CYL, ADD) instead of typing sizes by hand.",
+        "Stock: barcode printing and scanning, batch and Excel imports, warehouse dispatch, and branch-to-branch shipments that only move stock when the receiving branch confirms, with PDF delivery notes and a full movement trail.",
+        "Reports for the owner: revenue per branch and period, analytics with Excel export, and staff bonuses pulled from Google Sheets; per-user permissions and branch management.",
+        "Moved price lookup to the server after finding invoices saved at zero when the browser failed to send the price, and fixed a soft-delete bug that hid 289 lens units from stock.",
+        "Fixed delivery notes that took 20.7 s and timed out; the cause was a blocked outside request for the QR image. Now 0.04 s."
+      ],
+      "summary": "Freelance. Only developer for the optical chain's web systems: the POS and stock system, branch websites and small internal tools. Tech stack: PHP 8, Laravel 10, JavaScript, SQL, HTML, CSS | MySQL, Blade, Spatie Permission, Sanctum, DomPDF, Laravel Excel, php-qrcode, Google Sheets API, Google Apps Script | Linux hosting over SSH"
+    },
+    {
+      "name": "Timedoor Academy",
+      "position": "Coding Teacher",
+      "location": "Indonesia",
+      "startDate": "2024-03",
+      "endDate": "2025-03",
+      "highlights": [
+        "Taught Python, web development (Django, Flask, JavaScript, React), Android (Kotlin, Java) and machine learning (TensorFlow).",
+        "Planned lessons and projects, helped students debug and use Git, and ran workshops and bootcamps."
+      ],
+      "summary": "Part-time. Taught students from beginner to advanced level. Tech stack: Python, JavaScript, Kotlin, Java, HTML, CSS | Django, Flask, React, Android Studio, TensorFlow, MySQL, PostgreSQL, Git"
+    },
+    {
+      "name": "Bangkit Academy by Google, GoTo and Traveloka",
+      "position": "Machine Learning Cohort (Full Graduate)",
+      "location": "Indonesia",
+      "startDate": "2024-09",
+      "endDate": "2024-12",
+      "highlights": [
+        "Completed 905 hours of Machine Learning coursework across 12 courses and specializations, with a final score of 84.7 and 100% attendance at mandatory sessions.",
+        "Capstone EasyTour (team C242-PS466): a travel app that recommends places similar to what the user searches for, for example other landmarks after a search for Monumen Nasional. Worked on the recommendation model with teammates from the Cloud and Mobile paths; we finished ahead of schedule and scored 88.9 (A).",
+        "Earned 16 certificates along the way, including the DeepLearning.AI TensorFlow Developer Professional Certificate and the Machine Learning Specialization."
+      ],
+      "summary": "Kampus Merdeka certified independent study (MSIB Batch 7) at PT Dicoding Akademi Indonesia. One of 4,636 students selected from more than 45,000 applicants. Tech stack: Python, TensorFlow, TensorFlow.js, TensorFlow Lite, scikit-learn, Google Cloud Platform, Git"
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Informatics Engineering Student Association (HMTI)",
+      "position": "Vice President",
+      "startDate": "2023-09",
+      "endDate": "2024-09",
+      "highlights": [
+        "Led internal teams and organised technical workshops, coding competitions, seminars, hackathons and company visits.",
+        "Ran mentorship for junior students and maintained the association's website and social media."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Soegijapranata Catholic University",
+      "area": "Computer Science",
+      "studyType": "Bachelor",
+      "startDate": "2022-08",
+      "endDate": "2026-04",
+      "score": "3.70 / 4.00"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Bangkit Academy 2024 Batch 2 - Machine Learning Path (Full Graduate) (Credential ID M233B4KY4197)",
+      "issuer": "Bangkit Academy by Google, GoTo and Traveloka",
+      "date": "2025-01"
+    },
+    {
+      "name": "DeepLearning.AI TensorFlow Developer Professional Certificate",
+      "issuer": "DeepLearning.AI, Coursera",
+      "date": "2024-11",
+      "url": "https://coursera.org/verify/professional-cert/QPFTACPZACE0"
+    },
+    {
+      "name": "Machine Learning Specialization",
+      "issuer": "DeepLearning.AI, Coursera",
+      "date": "2024-10",
+      "url": "https://coursera.org/verify/specialization/6I8VATQL1A6K"
+    },
+    {
+      "name": "Advanced Computer Vision with TensorFlow",
+      "issuer": "DeepLearning.AI, Coursera",
+      "date": "2024-12",
+      "url": "https://coursera.org/verify/CI715K2FV7IU"
+    },
+    {
+      "name": "Custom and Distributed Training with TensorFlow",
+      "issuer": "DeepLearning.AI, Coursera",
+      "date": "2024-12",
+      "url": "https://coursera.org/verify/9S515E2H0CHW"
+    },
+    {
+      "name": "Custom Models, Layers, and Loss Functions with TensorFlow",
+      "issuer": "DeepLearning.AI, Coursera",
+      "date": "2024-12",
+      "url": "https://coursera.org/verify/SYQN595PH0L1"
+    },
+    {
+      "name": "Build Basic Generative Adversarial Networks (GANs)",
+      "issuer": "DeepLearning.AI, Coursera",
+      "date": "2024-12",
+      "url": "https://coursera.org/verify/NFV3GU2IYQA5"
+    },
+    {
+      "name": "Generative AI for Everyone",
+      "issuer": "DeepLearning.AI, Coursera",
+      "date": "2024-12",
+      "url": "https://coursera.org/verify/U0X10S4Z02F3"
+    },
+    {
+      "name": "Browser-based Models with TensorFlow.js",
+      "issuer": "DeepLearning.AI, Coursera",
+      "date": "2024-11",
+      "url": "https://coursera.org/verify/3THR9BSX68S9"
+    },
+    {
+      "name": "Data Pipelines with TensorFlow Data Services",
+      "issuer": "DeepLearning.AI, Coursera",
+      "date": "2024-11",
+      "url": "https://coursera.org/verify/22N0HLQT1JSX"
+    },
+    {
+      "name": "Device-based Models with TensorFlow Lite",
+      "issuer": "DeepLearning.AI, Coursera",
+      "date": "2024-11",
+      "url": "https://coursera.org/verify/LZM2HFGBDDC5"
+    },
+    {
+      "name": "Structuring Machine Learning Projects",
+      "issuer": "DeepLearning.AI, Coursera",
+      "date": "2024-11",
+      "url": "https://coursera.org/verify/QK7FJOQRCNWO"
+    },
+    {
+      "name": "Linear Algebra for Machine Learning and Data Science",
+      "issuer": "DeepLearning.AI, Coursera",
+      "date": "2024-10",
+      "url": "https://coursera.org/verify/MK11G9FS2NGJ"
+    },
+    {
+      "name": "Belajar Analisis Data dengan Python (Data Analysis with Python)",
+      "issuer": "Dicoding Indonesia",
+      "date": "2024-10",
+      "url": "https://www.dicoding.com/certificates/GRX5493EYP0M"
+    },
+    {
+      "name": "Using Python to Interact with the Operating System",
+      "issuer": "Google, Coursera",
+      "date": "2024-09",
+      "url": "https://coursera.org/verify/VGRL650898IN"
+    },
+    {
+      "name": "Crash Course on Python",
+      "issuer": "Google, Coursera",
+      "date": "2024-09",
+      "url": "https://coursera.org/verify/F438S0J4WE4Q"
+    },
+    {
+      "name": "Memulai Dasar Pemrograman untuk Menjadi Pengembang Software (Programming Fundamentals)",
+      "issuer": "Dicoding Indonesia",
+      "date": "2024-09",
+      "url": "https://www.dicoding.com/certificates/98XWLDE6LZM3"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Languages",
+      "keywords": [
+        "Python",
+        "Go",
+        "PHP",
+        "JavaScript",
+        "TypeScript",
+        "Kotlin",
+        "SQL",
+        "HTML",
+        "CSS",
+        "Java"
+      ]
+    },
+    {
+      "name": "Backend",
+      "keywords": [
+        "Laravel",
+        "Flask",
+        "Gin",
+        "GORM",
+        "REST APIs",
+        "webhooks",
+        "Server-Sent Events",
+        "JWT",
+        "role- and region-based access control",
+        "scheduled jobs"
+      ]
+    },
+    {
+      "name": "APIs & integration",
+      "keywords": [
+        "Odoo (XML-RPC)",
+        "Accurate Online API",
+        "Google BigQuery API",
+        "Google Sheets",
+        "Gmail API (OAuth)",
+        "Telegram Bot API",
+        "Fingerspot attendance API",
+        "OpenStreetMap Nominatim",
+        "Model Context Protocol (MCP)"
+      ]
+    },
+    {
+      "name": "Databases & data",
+      "keywords": [
+        "MySQL",
+        "PostgreSQL (Supabase, row-level security)",
+        "SQLite",
+        "BigQuery",
+        "ETL pipelines",
+        "data reconciliation",
+        "Excel automation (openpyxl)",
+        "web scraping (Requests, BeautifulSoup)"
+      ]
+    },
+    {
+      "name": "AI & ML",
+      "keywords": [
+        "Claude (Anthropic API)",
+        "Gemini",
+        "OpenAI",
+        "Groq",
+        "OpenRouter",
+        "Ollama",
+        "LLM tool use with SQL guardrails",
+        "model fallback",
+        "OCR (Tesseract, OpenCV, NumPy)",
+        "TensorFlow",
+        "scikit-learn"
+      ]
+    },
+    {
+      "name": "Security",
+      "keywords": [
+        "access-control audits",
+        "login rate limiting and lockout",
+        "Content-Security-Policy and security headers",
+        "nginx hardening",
+        "DKIM email signing",
+        "webhook verification",
+        "secrets handling"
+      ]
+    },
+    {
+      "name": "Frontend & mobile",
+      "keywords": [
+        "Android (Kotlin, Jetpack Compose, Material 3)",
+        "React Native (Expo, EAS builds, APK releases)",
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "WordPress"
+      ]
+    },
+    {
+      "name": "DevOps & testing",
+      "keywords": [
+        "Linux (Ubuntu) VPS",
+        "nginx",
+        "systemd",
+        "Docker",
+        "Git",
+        "GitHub Actions CI",
+        "Go tests",
+        "pytest",
+        "Postman"
+      ]
+    },
+    {
+      "name": "Business domain",
+      "keywords": [
+        "accounting (double-entry, chart of accounts, payables, receivables, VAT)",
+        "inventory and warehousing",
+        "approval workflows",
+        "HR and recruitment",
+        "OKR and KPI tracking"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Indonesian",
+      "fluency": "Native"
+    },
+    {
+      "language": "English",
+      "fluency": "Professional working proficiency"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Tanya Data - AI analytics assistant on BigQuery (built at GSI)",
+      "description": "Sends a morning report to each division (management, sales, supply chain, finance) by email; covered by 22 test scripts.",
+      "startDate": "2026",
+      "keywords": [
+        "Python",
+        "Flask",
+        "Server-Sent Events",
+        "Google BigQuery",
+        "Gemini",
+        "Groq",
+        "OpenRouter",
+        "Claude",
+        "Ollama",
+        "SMTP",
+        "WhatsApp Cloud API"
+      ]
+    },
+    {
+      "name": "HR Recruitment System (built at GSI)",
+      "description": "Before switching to the new scoring engine I ran it against 300 real candidates next to the old one: no differences.",
+      "startDate": "2026",
+      "keywords": [
+        "Go",
+        "GORM",
+        "MySQL",
+        "SQLite",
+        "TypeScript",
+        "React",
+        "Vite",
+        "Python",
+        "Playwright",
+        "Gmail API",
+        "WhatsApp links",
+        "systemd"
+      ]
+    },
+    {
+      "name": "Job Portal (built at GSI)",
+      "description": "Applications land straight in the recruitment system and are scored by the same engine as job-board applicants; a help button sends candidates to HR on WhatsApp or email.",
+      "startDate": "2026",
+      "keywords": [
+        "React",
+        "TypeScript",
+        "Go REST API",
+        "MySQL"
+      ]
+    },
+    {
+      "name": "OKR System (built at GSI)",
+      "description": "Online backups with SQLite VACUUM INTO, so a consistent copy is taken while the app is running.",
+      "startDate": "2026",
+      "keywords": [
+        "Go",
+        "Gin",
+        "GORM",
+        "SQLite",
+        "JWT",
+        "React 19",
+        "Vite",
+        "Tailwind CSS",
+        "Docker"
+      ]
+    },
+    {
+      "name": "Optik Rizki Eye Plus websites and tools (freelance)",
+      "description": "Branch financial report web app on Google Sheets with Apps Script.",
+      "startDate": "2025-10",
+      "keywords": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "PHP",
+        "pdf.js",
+        "Google Sheets",
+        "Google Apps Script"
+      ]
+    },
+    {
+      "name": "Mobile Banking App - Android technical test",
+      "description": "Native Android app with login, a home screen with the account balance, money transfer and transaction history.",
+      "startDate": "2026-04",
+      "keywords": [
+        "Kotlin",
+        "Jetpack Compose",
+        "Material 3",
+        "MVVM (ViewModel)",
+        "Navigation Compose",
+        "Kotlin Coroutines",
+        "Gson"
+      ]
+    },
+    {
+      "name": "Open-source demos - github.com/AlvinFerdinand",
+      "description": "Small rebuilds of patterns from my production work, on made-up data and with tests: stock transfers, region-based permissions, OCR form reading, FIFO costing and incremental API sync.",
+      "startDate": "2026",
+      "keywords": [
+        "Python",
+        "Java",
+        "NumPy",
+        "pytest",
+        "Spring Boot",
+        "GitHub Actions"
+      ]
+    },
+    {
+      "name": "Academic Journal Website (OJS, PHP)",
+      "description": "Public journal site with author registration, plus a read-only bridge that sends manuscripts into the ERP.",
+      "startDate": "2026",
+      "keywords": [
+        "PHP",
+        "Open Journal Systems",
+        "MySQL",
+        "nginx"
+      ]
+    },
+    {
+      "name": "Church Website, GWM 77movement (Laravel)",
+      "description": "Website with a Bible reader, gallery, articles and an admin panel.",
+      "startDate": "2026",
+      "keywords": [
+        "PHP",
+        "Laravel 9",
+        "MySQL",
+        "JavaScript"
+      ]
+    },
+    {
+      "name": "Market Data Scrapers (Python)",
+      "description": "Collected product listings from the government e-catalogue and a members directory into Excel for the sales team.",
+      "startDate": "2026",
+      "keywords": [
+        "Python",
+        "Requests",
+        "BeautifulSoup",
+        "openpyxl"
+      ]
+    },
+    {
+      "name": "Kota Atlas (JavaScript, HTML)",
+      "description": "Website about the culture of Semarang.",
+      "startDate": "2024-09",
+      "endDate": "2024-10",
+      "keywords": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Netlify"
+      ]
+    },
+    {
+      "name": "Social Analyst Web (Laravel, AI)",
+      "description": "Web app that analyses social media accounts with AI.",
+      "startDate": "2025-09",
+      "endDate": "2026-01",
+      "keywords": [
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "JavaScript",
+        "AI API"
+      ]
+    },
+    {
+      "name": "Rimini Shop online store (WordPress)",
+      "description": "Online shop for a retail client.",
+      "startDate": "2025-09",
+      "endDate": "2025-12",
+      "keywords": [
+        "WordPress",
+        "PHP",
+        "CSS"
+      ]
+    }
+  ]
+}
